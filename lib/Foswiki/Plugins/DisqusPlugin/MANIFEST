@@ -1,0 +1,3 @@
+data/System/DisqusPlugin.txt 0644
+lib/Foswiki/Plugins/DisqusPlugin/Config.spec 0644
+lib/Foswiki/Plugins/DisqusPlugin.pm 0644

@@ -1,0 +1,61 @@
+%META:TOPICINFO{author="micha" comment="reprev" date="1367737444" format="1.1" reprev="2" version="2"}%
+---+!! %TOPIC%
+%SHORTDESCRIPTION%
+
+%TOC%
+
+%TOPIC% allows to embed the popular [[http://disqus.com/][DISQUS]] commenting system to Foswiki. This is mostly
+of use when running a public site on the internet to allow a more wider range of people to comment on your site.
+Instead of requiring them to register and log in to your site, they can use their existing Disqus, Facebook, google+
+or twitter identity already authenticated on the net.
+
+Note that all comments will be stored on disqus.com, not on your own server. There are however APIs to import and
+export this data. Further note that you will have to register an account on disqus.com and register your Foswiki
+site. The generated short name for your site then has to be stored in ={DisqusPlugin}{ForumName}=. 
+All maintenance of comments including moderation is done via disqus.com as well, not on your own site.
+
+Use =%!DISQUS%= on any page to start a discussion on that page. 
+
+Use =%!DISQUS_COUNT%= to display the number of comments on page.
+
+---++ DISQUS -- embed a discussion 
+
+This will embed all required javascript code to the page so that it loads the disqus widget on page load.
+
+| *Parameters* | *Description* | *Default* |
+| [topic] | the topic to render the discussion for | current topic |
+| title | the title to be used for that discussion | title of the html page |
+| url | the location of the page hosting this discussion | the current view url |
+
+---++ DISQUS_COUNT -- display number of comments on a given topic
+
+This is mostly useful when rendering a list of topics with discussions and add the number of comments for each.
+
+| *Parameters* | *Description* | *Default* |
+| [topic] | the topic to render the counter for | current topic |
+| format | markup template to be used | =&lt;a href="$url" class="disqus_count" data-disqus-identifier="$id">&lt;/a>= |
+
+---++ Skin integration
+
+%TOPIC% is already integrated into Foswiki:Extensions/NatSkin's pluggable commenting system. Use the =COMMENTSYSTEM=
+preference variable to switch it to =disqus=. 
+
+---++ Installation Instructions
+See also comments above.
+
+%$INSTALL_INSTRUCTIONS%
+
+---++ Info
+<!--
+   * Set SHORTDESCRIPTION = %$SHORTDESCRIPTION%
+-->
+
+|  Author(s): | Michael Daum|
+|  Copyright: | &copy; 2011 Michael Daum http://michaeldaumconsulting.com |
+|  License: | [[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]] |
+|  Release: | %$RELEASE% |
+|  Version: | %$VERSION% |
+|  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  Dependencies: | %$DEPENDENCIES% |
+|  Home page: | Foswiki:Extensions/%TOPIC% |
+|  Support: | Foswiki:Support/%TOPIC% |
