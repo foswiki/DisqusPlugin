@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# DisqusPlugin is Copyright (C) 2013 Michael Daum http://michaeldaumconsulting.com
+# DisqusPlugin is Copyright (C) 2013-2014 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,20 +22,17 @@ use Foswiki::Func ();
 use Foswiki::Meta ();
 use Digest::MD5 ();
 
-our $VERSION = '0.01';
-our $RELEASE = '0.01';
+our $VERSION = '1.00';
+our $RELEASE = '1.00';
 our $SHORTDESCRIPTION = 'Disqus-based commenting system';
 our $NO_PREFS_IN_TOPIC = 1;
-our $baseWeb;
-our $baseTopic;
 our $doneDisqusInit = 0;
 our $doneDisqusCount = 0;
 our $doneDisqusEmbed = 0;
 
-use constant DEBUG => 0; # toggle me
+use constant TRACE => 0; # toggle me
 
 sub initPlugin {
-  ($baseTopic, $baseWeb) = @_;
 
   Foswiki::Func::registerTagHandler('DISQUS', \&DISQUS);
   Foswiki::Func::registerTagHandler('DISQUS_COUNT', \&DISQUS_COUNT);
@@ -52,7 +49,7 @@ sub initPlugin {
 }
 
 sub writeDebug {
-  print STDERR "DisqusPlugin - $_[0]\n" if DEBUG;
+  print STDERR "DisqusPlugin - $_[0]\n" if TRACE;
 }
 
 sub beforeSaveHandler {
