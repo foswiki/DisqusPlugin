@@ -22,8 +22,8 @@ use Foswiki::Func ();
 use Foswiki::Meta ();
 use Digest::MD5 ();
 
-our $VERSION = '1.00';
-our $RELEASE = '1.00';
+our $VERSION = '2.00';
+our $RELEASE = '2.00';
 our $SHORTDESCRIPTION = 'Disqus-based commenting system';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneDisqusInit = 0;
@@ -94,11 +94,8 @@ sub requireDisqusCount {
   my $code = <<'HERE';
 <script type="text/javascript">
 jQuery(function($) {
-  $("<script />").attr({
-    type: "text/javascript",
-    async: true,
-    src: '//' + disqus_shortname + '.disqus.com/count.js'
-  }).appendTo("body");
+  window.DISQUSWIDGETS = undefined;
+  $.getScript('//' + disqus_shortname + '.disqus.com/count.js');
 });
 </script>
 HERE
@@ -115,11 +112,9 @@ sub requireDisqusEmbed {
   my $code = <<'HERE';
 <script type="text/javascript">
 jQuery(function($) {
-  $("<script />").attr({
-    type: "text/javascript",
-    async: true,
-    src: '//' + disqus_shortname + '.disqus.com/embed.js'
-  }).appendTo("body");
+  if (typeof(window.DISQUS) === 'undefined') {
+    $.getScript('//' + disqus_shortname + '.disqus.com/embed.js');
+  }
 });
 </script>
 HERE
@@ -144,7 +139,7 @@ sub DISQUS_COUNT {
 
   requireDisqusCount();
 
-  my $format = $params->{format} || '<a href="$url" class="disqus_count" data-disqus-identifier="$id"></a>';
+  my $format = $params->{format} || '<a href="$url" class="disqus-comment-count" data-disqus-identifier="$id"></a>';
   my $viewUrl = Foswiki::Func::getScriptUrl($web, $topic, "view", '#' => 'disqus_thread');
   $format =~ s/\$url/$viewUrl/g;
   $format =~ s/\$id/$id/g;
@@ -183,15 +178,20 @@ sub DISQUS {
 
   requireDisqusEmbed();
 
-  my $code = <<"HERE";
+  return <<"HERE";
+<div id="disqus_thread"></div>
 <script type="text/javascript">
 var $vars;
+if (typeof(window.DISQUS) !== 'undefined') {
+  DISQUS.reset({
+    reload: true,
+    config: function () {
+      this.page.identifier = disqus_identifier;
+    }
+  });
+}
 </script>
 HERE
-
-  Foswiki::Func::addToZone("script", "DISQUS::VARS", $code, "DISQUS::INIT");
-
-  return '<div id="disqus_thread"></div>';
 }
 
 1;
