@@ -22,8 +22,8 @@ use Foswiki::Func ();
 use Foswiki::Meta ();
 use Digest::MD5 ();
 
-our $VERSION = '2.00';
-our $RELEASE = '2.00';
+our $VERSION = '2.01';
+our $RELEASE = '2.01';
 our $SHORTDESCRIPTION = 'Disqus-based commenting system';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneDisqusInit = 0;
@@ -56,6 +56,8 @@ sub beforeSaveHandler {
   my ($text, $topic, $web, $meta) = @_;
 
   writeDebug("called beforeSaveHandler($web, $topic)");
+
+  return if $web =~ /^_/; # don't add IDs for template webs
 
   if ($text =~ /%DISQUS({.*?})?%/ || Foswiki::Func::getPreferencesFlag("DISPLAYCOMMENTS")) {
     my $disqusData = $meta->get("DISQUS");

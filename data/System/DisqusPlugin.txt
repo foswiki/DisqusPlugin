@@ -56,6 +56,7 @@ See also comments above.
 |  Release: | %$RELEASE% |
 |  Version: | %$VERSION% |
 |  Change History: | <!-- versions below in reverse order -->&nbsp; |
+|  31 Aug 2015 | ignore discussions in template (_) webs |
 |  16 Dec 2014 | make it work with async page loads as per <nop>AngularSkin |
 |   5 May 2013 | initial release |
 |  Dependencies: | %$DEPENDENCIES% |
