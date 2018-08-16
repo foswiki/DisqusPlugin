@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# DisqusPlugin is Copyright (C) 2013-2015 Michael Daum http://michaeldaumconsulting.com
+# DisqusPlugin is Copyright (C) 2013-2018 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,8 +22,8 @@ use Foswiki::Func ();
 use Foswiki::Meta ();
 use Digest::MD5 ();
 
-our $VERSION = '2.02';
-our $RELEASE = '25 Sep 2015';
+our $VERSION = '2.01';
+our $RELEASE = '16 Aug 2018';
 our $SHORTDESCRIPTION = 'Disqus-based commenting system';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneDisqusInit = 0;
@@ -59,7 +59,7 @@ sub beforeSaveHandler {
 
   return if $web =~ /^_/; # don't add IDs for template webs
 
-  if ($text =~ /%DISQUS({.*?})?%/ || Foswiki::Func::getPreferencesFlag("DISPLAYCOMMENTS")) {
+  if ($text =~ /%DISQUS(\{.*?\})?%/ || Foswiki::Func::getPreferencesFlag("DISPLAYCOMMENTS")) {
     my $disqusData = $meta->get("DISQUS");
     unless (defined $disqusData) {
       writeDebug("adding META::DISQUS");

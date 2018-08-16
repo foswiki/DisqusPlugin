@@ -1,9 +1,9 @@
 *.gz
 *.swp
-DisqusPlugin.md5
-DisqusPlugin.sha1
-DisqusPlugin.tgz
-DisqusPlugin.txt
-DisqusPlugin.zip
-DisqusPlugin_installer
-DisqusPlugin_installer.pl
+/DisqusPlugin.md5
+/DisqusPlugin.sha1
+/DisqusPlugin.tgz
+/DisqusPlugin.txt
+/DisqusPlugin.zip
+/DisqusPlugin_installer
+/DisqusPlugin_installer.pl
