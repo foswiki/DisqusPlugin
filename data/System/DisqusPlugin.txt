@@ -47,7 +47,7 @@ See also comments above.
 
 ---++ Content Security Policy
 
-If you are using %TOPIC% together with [[Foswiki:Extensions/SecurityHeadersPlugin][SecurityHeadersPlugin]] you will have
+If you are using %TOPIC% together with [[https://foswiki.org/Extensions/SecurityHeadersPlugin][SecurityHeadersPlugin]] you will have
 to adjust the policy as follows:
 
    * add =*.disqus.com *.disquscdn.com= to =script-src=
@@ -71,6 +71,7 @@ $Foswiki::cfg{Http}{ContentSecurityPolicy}{"connect-src"}= "'self' *.disqus.com"
 ---++ Change History
 
 %TABLE{columnwidths="7em" tablewidth="100%"}%
+|  20 Dec 2024 | docu fixes |
 |  16 Aug 2018 | fixed some more perl errors |
 |  25 Aug 2015 | added docu on content security policy |
 |  31 Aug 2015 | ignore discussions in template (_) webs |
@@ -79,7 +80,7 @@ $Foswiki::cfg{Http}{ContentSecurityPolicy}{"connect-src"}= "'self' *.disqus.com"
 
 %META:FORM{name="PackageForm"}%
 %META:FIELD{name="Author" title="Author" value="Michael Daum"}%
-%META:FIELD{name="Copyright" title="Copyright" value="&copy; 2011-2018 Michael Daum http://michaeldaumconsulting.com"}%
+%META:FIELD{name="Copyright" title="Copyright" value="&copy; 2011-2024 Michael Daum"}%
 %META:FIELD{name="Description" title="Description" value="%25$SHORTDESCRIPTION%25"}%
 %META:FIELD{name="Home" title="Home" value="https://foswiki.org/Extensions/DisqusPlugin"}%
 %META:FIELD{name="License" title="License" value="[[http://www.gnu.org/licenses/gpl.html][GPL (Gnu General Public License)]]"}%

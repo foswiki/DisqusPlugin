@@ -1,6 +1,6 @@
 # Plugin for Foswiki - The Free and Open Source Wiki, http://foswiki.org/
 #
-# DisqusPlugin is Copyright (C) 2013-2018 Michael Daum http://michaeldaumconsulting.com
+# DisqusPlugin is Copyright (C) 2013-2024 Michael Daum http://michaeldaumconsulting.com
 #
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -22,9 +22,10 @@ use Foswiki::Func ();
 use Foswiki::Meta ();
 use Digest::MD5 ();
 
-our $VERSION = '2.01';
-our $RELEASE = '16 Aug 2018';
+our $VERSION = '2.02';
+our $RELEASE = '%$RELEASE%';
 our $SHORTDESCRIPTION = 'Disqus-based commenting system';
+our $LICENSECODE = '%$LICENSECODE%';
 our $NO_PREFS_IN_TOPIC = 1;
 our $doneDisqusInit = 0;
 our $doneDisqusCount = 0;
@@ -81,7 +82,7 @@ sub requireDisqusInit {
   $doneDisqusInit = 1;
 
   my $code = <<"HERE";
-<script type="text/javascript">var disqus_shortname = "$Foswiki::cfg{DisqusPlugin}{ForumName}";</script>
+<script>var disqus_shortname = "$Foswiki::cfg{DisqusPlugin}{ForumName}";</script>
 HERE
 
   Foswiki::Func::addToZone("script", "DISQUS::INIT", $code, "JQUERYPLUGIN");
@@ -94,7 +95,7 @@ sub requireDisqusCount {
   requireDisqusInit();
 
   my $code = <<'HERE';
-<script type="text/javascript">
+<script>
 jQuery(function($) {
   window.DISQUSWIDGETS = undefined;
   $.getScript('//' + disqus_shortname + '.disqus.com/count.js');
@@ -112,7 +113,7 @@ sub requireDisqusEmbed {
   requireDisqusInit();
 
   my $code = <<'HERE';
-<script type="text/javascript">
+<script>
 jQuery(function($) {
   if (typeof(window.DISQUS) === 'undefined') {
     $.getScript('//' + disqus_shortname + '.disqus.com/embed.js');
@@ -182,7 +183,7 @@ sub DISQUS {
 
   return <<"HERE";
 <div id="disqus_thread"></div>
-<script type="text/javascript">
+<script>
 var $vars;
 if (typeof(window.DISQUS) !== 'undefined') {
   DISQUS.reset({
